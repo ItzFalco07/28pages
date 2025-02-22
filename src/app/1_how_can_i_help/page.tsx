@@ -1,13 +1,12 @@
 "use client"
 
-import Image from "next/image";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './_1HowCanIHelp.css';
 
-export default function _1HowCanIHelp() {
+export default function Index() {
 
   const configJson = {
     defaultPromptPlaceholder: 'What can I help you with today?',
