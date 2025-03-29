@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background p-4 transition-colors">
-      <div className="mx-auto max-w-2xl space-y-8">
+      <div className="mx-auto max-w-xl space-y-8">
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Avatar className="h-16 w-16 rounded-full ring-2 ring-primary ring-offset-2">
