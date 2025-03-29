@@ -12,8 +12,9 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    gap: 0px;
   }
   
   /* Gradient overlay for color */
@@ -38,7 +39,9 @@
   .header {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
   }
   
   .user-info {
@@ -57,7 +60,7 @@
   /* Response with fade-in effect */
   .response {
     font-size: 1.2em;
-    margin-top: 20px;
+    /* margin-top: 150px; */
     color: #d896ff; /* Purple text for better visibility */
     min-height: 50px; /* Ensure some space even without a response */
   }
