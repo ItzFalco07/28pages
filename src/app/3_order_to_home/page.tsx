@@ -1,199 +1,76 @@
-"use client"
+import { Bell } from 'lucide-react';
 
-import type React from "react"
-
-import { useState } from "react"
-import { Store, MapPin, ChevronRight, ShoppingBag } from "lucide-react"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { cn } from "@/lib/utils"
-
-const stores = [
-  {
-    name: "Whole Foods",
-    type: "Groceries",
-    image: "/placeholder.svg?height=50&width=50",
-  },
-  {
-    name: "Sprouts Farmers Market",
-    type: "Groceries",
-    image: "/placeholder.svg?height=50&width=50",
-  },
-  {
-    name: "Smart & Final",
-    type: "Groceries",
-    image: "/placeholder.svg?height=50&width=50",
-  },
-]
-
-const addresses = [
-  "123 Main St, Los Angeles, CA 90012",
-  "456 Broadway Ave, Los Angeles, CA 90015",
-  "789 Sunset Blvd, Los Angeles, CA 90028",
-]
-
-export default function FoodDelivery() {
-  const [step, setStep] = useState(1)
-  const [orderText, setOrderText] = useState("")
-  const [selectedAddress, setSelectedAddress] = useState("")
-  const [selectedStore, setSelectedStore] = useState("")
-
-  const handleOrderSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (orderText.toLowerCase().includes("order food")) {
-      setStep(2)
-    }
-  }
-
-  const handleAddressSelect = (address: string) => {
-    setSelectedAddress(address)
-    setStep(3)
-  }
-
-  const handleStoreSelect = (store: string) => {
-    setSelectedStore(store)
-    setStep(4)
-  }
-
+export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background p-4">
-      <div className="max-w-md mx-auto space-y-4">
-        {/* Step indicator */}
-        <div className="flex justify-between mb-8">
-          {[1, 2, 3, 4].map((number) => (
-            <div
-              key={number}
-              className={cn(
-                "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium",
-                step >= number ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
-              )}
-            >
-              {number}
-            </div>
-          ))}
+    <div className="w-screen h-screen relative flex items-center justify-center">
+      <div className="relative w-full max-w-md lg:max-w-sm h-[90vh] md:rounded-2xl lg:rounded-[50px] bg-[#d7e7ff]">
+        <div className="w-full my-10 flex justify-between px-4">
+          <img className="w-[40px] h-[40px] rounded-full" src="https://images.unsplash.com/photo-1584999734482-0361aecad844?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+          <div className='px-4 py-2 bg-white rounded-full flex gap-2 text-black font-semibold'>
+            <Bell stroke='#000' fill='#000' size={20} />
+            3
+          </div>
         </div>
 
-        {/* Step 1: Order Input */}
-        {step === 1 && (
-          <Card className="p-6">
-            <form onSubmit={handleOrderSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="order">What would you like to do?</Label>
-                <Input
-                  id="order"
-                  placeholder="Type 'Order Food' to continue..."
-                  value={orderText}
-                  onChange={(e) => setOrderText(e.target.value)}
-                  className="text-lg"
-                />
-              </div>
-              <Button type="submit" className="w-full">
-                Continue
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-          </Card>
-        )}
+        <div className='w-full mt-24 text-black text-2xl px-4'>
+          <h1 className='font-bold'>Hello Mathew!</h1>
+          <h1 className='text-zinc-500'>What would you like to do?</h1>
+        </div>
 
-        {/* Step 2: Address Selection */}
-        {step === 2 && (
-          <Card className="p-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-lg font-medium">
-                <MapPin className="h-5 w-5 text-primary" />
-                Select Delivery Address
-              </div>
-              <RadioGroup defaultValue={selectedAddress} className="space-y-3">
-                {addresses.map((address) => (
-                  <div
-                    key={address}
-                    className="flex items-center space-x-2 rounded-lg border p-4 cursor-pointer hover:bg-muted"
-                    onClick={() => handleAddressSelect(address)}
-                  >
-                    <RadioGroupItem value={address} id={address} />
-                    <Label htmlFor={address} className="flex-1 cursor-pointer">
-                      {address}
-                    </Label>
-                  </div>
-                ))}
-              </RadioGroup>
-            </div>
-          </Card>
-        )}
+        <div className='w-full px-4 grid grid-cols-2 gap-2 py-4 overflow-scroll text-black'>
+          {/* column _ 1 */}
+          <div className='w-full flex flex-col gap-2'>
+            <div className='h-fit cursor-pointer font-semibold flex flex-col gap-4 px-2 py-6 w-full bg-[#f1f8fd] rounded-2xl'>
+              <h1 className='text-sm mx-2'>I want to go vecation with my family</h1>
 
-        {/* Step 3: Store Selection */}
-        {step === 3 && (
-          <Card className="p-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 text-lg font-medium">
-                <Store className="h-5 w-5 text-primary" />
-                Select a Store
-              </div>
-              <div className="space-y-3">
-                {stores.map((store) => (
-                  <div
-                    key={store.name}
-                    className="flex items-center gap-4 p-4 rounded-lg border cursor-pointer hover:bg-muted"
-                    onClick={() => handleStoreSelect(store.name)}
-                  >
-                    <img
-                      src={store.image || "/placeholder.svg"}
-                      alt={store.name}
-                      className="w-12 h-12 rounded-lg object-cover"
-                    />
-                    <div className="flex-1">
-                      <h3 className="font-medium">{store.name}</h3>
-                      <p className="text-sm text-muted-foreground">{store.type}</p>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                ))}
+              <div className="w-full h-fit rounded-xl p-2 bg-white grid grid-cols-6 gap-1">
+                <img className="col-span-4 rounded-md" src="https://images.unsplash.com/photo-1674386491558-516335043748?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                <img className="col-span-2 h-full rounded-md" src="https://images.unsplash.com/photo-1705407197154-e06fd95e6589?q=80&w=1380&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+
               </div>
             </div>
-          </Card>
-        )}
 
-        {/* Step 4: Order Confirmation */}
-        {step === 4 && (
-          <Card className="p-6">
-            <div className="space-y-6">
-              <div className="flex items-center gap-2 text-lg font-medium text-primary">
-                <ShoppingBag className="h-6 w-6" />
-                Order Confirmation
-              </div>
+            <div className='h-fit cursor-pointer font-semibold flex flex-col gap-4 px-2 py-6 w-full bg-[#f1f8fd] rounded-2xl'>
+              <h1 className='text-sm mx-2'>I want to go vecation with my family</h1>
 
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label className="text-muted-foreground">Delivery Address</Label>
-                  <p className="font-medium">{selectedAddress}</p>
-                </div>
+              <div className="w-full h-fit rounded-xl p-2 bg-white grid grid-cols-6 gap-1">
+                <img className="col-span-4 rounded-md" src="https://images.unsplash.com/photo-1674386491558-516335043748?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                <img className="col-span-2 rounded-md" src="https://images.unsplash.com/photo-1705407197154-e06fd95e6589?q=80&w=1380&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
-                <div className="space-y-2">
-                  <Label className="text-muted-foreground">Selected Store</Label>
-                  <p className="font-medium">{selectedStore}</p>
-                </div>
-
-                <div className="h-px bg-border" />
-
-                <div className="bg-primary/5 p-4 rounded-lg">
-                  <p className="text-sm text-muted-foreground">
-                    Your order has been confirmed! You can now start adding items to your cart from {selectedStore}.
-                  </p>
-                </div>
-
-                <Button className="w-full" size="lg">
-                  Start Shopping
-                  <ShoppingBag className="ml-2 h-4 w-4" />
-                </Button>
               </div>
             </div>
-          </Card>
-        )}
+          </div>
+
+          {/* column _ 2 */}
+          <div className='w-full flex flex-col gap-2'>
+            <div className='h-fit cursor-pointer font-semibold flex flex-col gap-4 px-2 py-6 w-full bg-[#f1f8fd] rounded-2xl'>
+              <h1 className='text-sm mx-2'>Find a beach with temprature of 75 Degree of heat</h1>
+
+              <div className="w-full h-fit rounded-xl p-2 bg-white grid grid-cols-6 gap-1">
+                <img className="col-span-4 h-full rounded-md" src="https://plus.unsplash.com/premium_photo-1673002094029-7b23531aa342?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YmVhY2glMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D" />
+                <img className="col-span-2 rounded-md" src="https://plus.unsplash.com/premium_photo-1690415398272-2cd0b4286af3?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhY2glMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D" />
+                <img className="col-span-2 rounded-md" src="https://images.unsplash.com/photo-1597910037383-d79beb2b39c3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                <img className="col-span-4 h-full rounded-md" src="https://images.unsplash.com/photo-1630083482715-cc3fee05dbcf?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+              </div>
+            </div>
+
+
+
+            <div className='h-fit cursor-pointer font-semibold flex flex-col gap-4 px-2 py-6 w-full bg-[#f1f8fd] rounded-2xl'>
+              <h1 className='text-sm mx-2'>I want to go vecation with my family</h1>
+
+              <div className="w-full h-fit rounded-xl p-2 bg-white grid grid-cols-6 gap-1">
+                <img className="col-span-4 rounded-md" src="https://images.unsplash.com/photo-1674386491558-516335043748?q=80&w=1377&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                <img className="col-span-2 rounded-md" src="https://images.unsplash.com/photo-1705407197154-e06fd95e6589?q=80&w=1380&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
       </div>
     </div>
   )
 }
-
