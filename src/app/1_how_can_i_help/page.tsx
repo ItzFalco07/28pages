@@ -46,6 +46,7 @@ export default function Index() {
   const [showStats, setShowStats] = useState(false);
   const [showPrompt, setShowPrompt] = useState(true);
 
+  console.log(showPrompt, icon, hint)
 
   useEffect(() => {
     // Trigger stats animation after a delay

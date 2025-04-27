@@ -51,7 +51,7 @@ export default function FinancialApp() {
   ]
 
   return (
-    <div className="min-h-screen max-w-md border border-neutral-700 rounded-[40px] py-6 mx-auto bg-background text-foreground">
+    <div className="h-[800px] max-w-[400px] border shadow-xl rounded-[40px] py-6 mx-auto bg-background text-foreground">
       <header className="flex justify-between items-center p-4 border-b">
         <Menu className="w-6 h-6" />
         <Avatar>

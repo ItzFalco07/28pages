@@ -9,9 +9,12 @@ export default function TapToSpeak() {
   const [isPressed, setIsPressed] = useState(false)
 
   return (
-    <div className="min-h-[400px] w-full flex items-center justify-center bg-dot-pattern">
-      <Card className="relative w-full max-w-md p-8 overflow-hidden">
-        <div className="relative z-10 flex flex-col items-center gap-4">
+    <div className="!h-screen w-full relative flex items-center justify-center bg-dot-pattern">
+      <Card className="relative w-full max-w-md p-8 h-[90%] overflow-hidden">
+
+        <h1 className="font-black text-3xl">Hello, <br/> How can i help you!</h1>
+
+        <div className="absolute bottom-12 left-1/2 translate-x-[-50%] z-10  flex flex-col items-center gap-4">
           <button
             onPointerDown={() => setIsPressed(true)}
             onPointerUp={() => setIsPressed(false)}
