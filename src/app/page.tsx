@@ -15,11 +15,15 @@ export default function Home() {
           <li><a href="./2_bluewave_clearglass_mic">2_bluewave_clearglass_mic ✅</a></li>
           <li><a href="./3_order_to_home">3_order_to_home ✅</a></li>
           <li><a href="./4_chat_voice">4_chat_voice ✅</a></li>
-          <li><a href="./5_goodmorning_jennifer">5_goodmorning_jennifer</a></li>
+          <li><a href="./5_goodmorning_jennifer">5_goodmorning_jennifer ✅</a></li>
           <li><a href="./6_goodday_jacob_jones">6_goodday_jacob_jones ✅</a></li>
-          <li><a href="./7_hey_welcome_jane">7_hey_welcome_jane</a></li>
-          <li><a href="./8_mini_desktop">8_mini_desktop</a></li>
+          <li><a href="./7_hey_welcome_jane">7_hey_welcome_jane ✅</a></li>
+          <li><a href="./8_mini_desktop">8_mini_desktop ✅</a></li>
           <li><a href="./9_press_to_talk">9_press_to_talk ✅</a></li>
+          <li><a href="./10_thats_your_actions">10_thats_your_actions</a></li>
+          <li><a href="./11_NOT_FOUND">11_NOT_FOUND</a></li>
+          <li><a href="./12_hi_john">12_hi_john</a></li>
+          <li><a href="./13_hey_ally">13_hey_ally</a></li>
         </ul>
 
       </div>

@@ -1,96 +1,108 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useState } from "react"
-import { CalendarIcon, Cloud, Sun, Umbrella } from "lucide-react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ModeToggle } from "@/components/ModeToggle"
-import { MeetingCard } from "@/components/meeting-card"
-import { Button } from "@/components/ui/button"
-
-const meetings = [
-  {
-    time: "10:00",
-    title: "Team Standup",
-    attendee: {
-      name: "Team",
-      image: "/placeholder.svg?height=32&width=32",
-    },
-  },
-  {
-    time: "11:00",
-    title: "Meeting with Nicholas",
-    attendee: {
-      name: "Nicholas",
-      image: "/placeholder.svg?height=32&width=32",
-    },
-  },
-  {
-    time: "14:00",
-    title: "Product Review",
-    attendee: {
-      name: "Sarah",
-      image: "/placeholder.svg?height=32&width=32",
-    },
-  },
-]
 
 export default function Home() {
-  const [greeting, setGreeting] = useState("")
-  const [weather, ] = useState<{
-    temp: number
-    condition: "sunny" | "cloudy" | "rainy"
-  }>({ temp: 72, condition: "sunny" })
-
+  const [currentTime, setCurrentTime] = useState(new Date())
+  
   useEffect(() => {
-    const hour = new Date().getHours()
-    if (hour < 12) setGreeting("Good morning")
-    else if (hour < 18) setGreeting("Good afternoon")
-    else setGreeting("Good evening")
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 60000)
+    
+    return () => clearInterval(timer)
   }, [])
-
-  const WeatherIcon = {
-    sunny: Sun,
-    cloudy: Cloud,
-    rainy: Umbrella,
-  }[weather.condition]
+  
+  // Format the greeting based on time of day
+  const getGreeting = () => {
+    const hour = currentTime.getHours()
+    if (hour < 12) return "Good morning"
+    if (hour < 18) return "Good afternoon"
+    return "Good evening"
+  }
 
   return (
-    <div className="min-h-screen bg-background p-4 transition-colors">
-      <div className="mx-auto max-w-xl space-y-8">
-        <header className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16 rounded-full ring-2 ring-primary ring-offset-2">
-              <AvatarImage src="/placeholder.svg?height=64&width=64" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight">{greeting} Jenifer</h1>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <WeatherIcon className="h-4 w-4" />
-                <span>{weather.temp}°F</span>
+    <div className="flex text-black justify-center items-center min-h-screen bg-gray-100">
+      {/* Phone frame */}
+      <div className="relative w-full max-w-[375px] h-[812px] bg-[#f5f5f7] rounded-[40px] overflow-hidden shadow-xl">
+        {/* Content container */}
+        <div className="relative h-full flex flex-col p-6">
+          {/* Top section with profile */}
+          <div className="flex justify-between items-start pt-6">
+            <div className="relative">
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white">
+                <Image 
+                  src="/placeholder.svg?height=56&width=56" 
+                  alt="Profile" 
+                  width={56} 
+                  height={56}
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute -inset-1 rounded-full border border-gray-300" style={{ 
+                background: 'transparent',
+                borderStyle: 'dashed',
+                borderWidth: '1px',
+                borderRadius: '50%',
+                transform: 'scale(1.2)'
+              }}></div>
+            </div>
+          </div>
+          
+          {/* Greeting section */}
+          <div className="mt-16">
+            <h1 className="text-5xl font-light tracking-tight">
+              {getGreeting()}
+            </h1>
+            <h2 className="text-5xl font-bold tracking-tight mt-1">
+              Jenifer
+            </h2>
+          </div>
+          
+          {/* Calendar section */}
+          <div className="mt-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-400 to-blue-600 rounded-lg"></div>
+                <div className="absolute inset-[1px] bg-white rounded-[3px]"></div>
+                <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-gray-600">31</div>
+                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-500 via-green-500 to-blue-500 rounded-b-[3px]"></div>
+              </div>
+              <span className="text-2xl text-gray-600 font-normal">Calendar</span>
+            </div>
+            
+            {/* Time slots */}
+            <div className="space-y-6">
+              <div className="flex items-center">
+                <div className="w-24 text-2xl font-medium">10:00</div>
+                <div className="w-2 h-2 bg-black rounded-full ml-2"></div>
+              </div>
+              
+              <div className="flex items-center">
+                <div className="w-24 text-2xl font-medium">11:00</div>
+                <div className="flex-1">
+                  <div className="flex items-center bg-white rounded-full py-3 px-4 shadow-sm">
+                    <div className="w-8 h-8 rounded-full overflow-hidden mr-3 flex-shrink-0">
+                      <Image 
+                        src="/placeholder.svg?height=32&width=32" 
+                        alt="Nicholas" 
+                        width={32} 
+                        height={32}
+                        className="object-cover"
+                      />
+                    </div>
+                    <span className="text-xl font-medium">Meeting with Nicholas</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <ModeToggle />
-        </header>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center gap-2">
-            <CalendarIcon className="h-5 w-5" />
-            <h2 className="text-xl font-semibold">Calendar</h2>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            {meetings.map((meeting) => (
-              <MeetingCard key={meeting.time} {...meeting} />
-            ))}
-            <Button className="w-full" variant="outline">
-              + Add Meeting
-            </Button>
-          </CardContent>
-        </Card>
+        </div>
+        
+        {/* Bottom navigation bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-black rounded-b-[40px]"></div>
       </div>
     </div>
   )
 }
-
